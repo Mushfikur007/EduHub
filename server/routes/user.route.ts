@@ -11,6 +11,7 @@ import {
   updateAvatar,
   updateUserInfo,
   updateUserPassword,
+  updateUserRole,
 } from "../controllers/user.controller";
 import { authorizeRoles, isAuthenticated } from "../middleware/auth";
 
@@ -42,5 +43,13 @@ userRouter.get(
   authorizeRoles("admin"),
   getAllUsers
 );
+
+userRouter.put(
+  "/update-user",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  updateUserRole
+);
+
 
 export default userRouter;
