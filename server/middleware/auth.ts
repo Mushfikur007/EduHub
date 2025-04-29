@@ -14,7 +14,7 @@ export const isAuthenticated = CatchAsyncError(
         new ErrorHandeler("Please login to access this resource", 400)
       );
     }
-
+// hfdu
     const decoded = jwt.verify(
       access_token,
       process.env.ACCESS_TOKEN as string
