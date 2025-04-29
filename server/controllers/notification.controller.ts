@@ -1,0 +1,53 @@
+import NotificationModel from "../models/notification.Model";
+import { NextFunction, Request, Response } from "express";
+import { CatchAsyncError } from "../middleware/catchAsyncError";
+import ErrorHandeler from "../utils/ErrorHandler";
+import { notDeepEqual } from "assert";
+
+// get all notifications --only admin
+export const getNotifications = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const notifications = await NotificationModel.find().sort({
+        createdAt: -1,
+      });
+
+      res.status(201).json({
+        success: true,
+        notifications,
+      });
+    } catch (error: any) {
+      return next(new ErrorHandeler(error.message, 500));
+    }
+  }
+);
+
+// update notifications status
+export const updateNotification = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const notification = await NotificationModel.findById(req.params.id);
+
+      if (!notification) {
+        return next(new ErrorHandeler("Notification not found", 404));
+      } else {
+        notification.status
+          ? (notification.status = "read")
+          : notification?.status;
+      }
+
+      await notification.save();
+
+      const notifications = await NotificationModel.find().sort({
+        createdAt: -1,
+      });
+
+      res.status(201).json({
+        success: true,
+        notifications,
+      });
+    } catch (error: any) {
+      return next(new ErrorHandeler(error.message, 500));
+    }
+  }
+);
