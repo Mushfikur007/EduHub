@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins, Josefin_Sans } from "next/font/google";
-
 import "./globals.css";
+import { ThemeProvider } from "./Utils/theme-provider";
+
+export const josefinSans = Josefin_Sans({
+  subsets: ["latin"],
+  variable: "--font-josefin-sans",
+});
+
+export const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-poppins",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +37,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} ${josefinSans.variable} ${geistSans.variable} ${geistMono.variable} antialiased !bg-white bg-no-repeat dark:from-gray-900 dark:bg-gradient-to-b dark:to-black duration-300`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

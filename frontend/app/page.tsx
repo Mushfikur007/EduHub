@@ -1,20 +1,25 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Heading from "./Utils/Heading";
+import Header from "./components/Header"
 
-interface Props {}
+interface Props { }
 
 const Page: FC<Props> = () => {
+  const [open, setOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState(0);
   return (
     <div>
-      <Heading 
+      <Heading
         title="E-Learning"
         description="E-Learning is a platform for students to learn and get help from teachers."
         keywords="Programming, MERN, Education, Online Learning"
       />
-      hello
-      {/* Add page content here */}
+      <Header
+        open={open}
+        setOpen={setOpen}
+        activeItem={activeItem} />
     </div>
   );
 };
