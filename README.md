@@ -51,11 +51,38 @@
 - Cloudinary account
 - Google OAuth credentials
 
-Install Dependencies
-bash
-npm install
+### Clone the Repository
 
-Run the Project
-bash
+```bash
+git clone https://github.com/mushfikur007/eduhub.git
+cd eduhub
+```
+
+### Environment Setup
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+REFRESH_TOKEN_SECRET=your_refresh_token_secret
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+REDIS_URL=your_redis_url
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run the Project
+
+```bash
 npm run dev
+```
+
 
