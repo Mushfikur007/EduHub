@@ -1,0 +1,68 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+.next/
+out/
+dist/
+build/
+
+# Dependency directories
+.pnp/
+.pnp.js
+
+# Testing
+coverage/
+test-output/
+
+# Environment variables
+.env
+.env.*.local
+!.env.example
+
+# Next.js cache
+.next/
+.vercel/
+
+# Optional npm cache directory
+.npm/
+
+# Yarn Integrity file
+.yarn-integrity
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint cache
+.eslintcache
+
+# Prettier
+.prettiercache
+
+# Redis dump (if using Redis locally)
+dump.rdb
+
+# Cloudinary config (if using CLI with config stored locally)
+.cloudinary/
+
+# Others (optional based on usage)
+*.local
