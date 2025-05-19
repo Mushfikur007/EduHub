@@ -35,7 +35,6 @@
 ### 🛠️ Technical Highlights
 - **Frontend:** Next.js, Redux Toolkit, TailwindCSS
 - **Backend:** Node.js, Express.js, MongoDB
-- **Real-Time:** Socket.io for notifications
 - **Caching:** Redis for performance
 - **Storage:** Cloudinary for media uploads
 - **Authentication:** JWT & OAuth
@@ -51,6 +50,8 @@
 - Redis
 - Cloudinary account
 - Google OAuth credentials
+- github OAuth credentials
+- stripe
 
 ### Clone the Repository
 
