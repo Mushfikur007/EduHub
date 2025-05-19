@@ -9,6 +9,7 @@
 ### 👥 User Management
 - Secure registration and login
 - Google OAuth-based social login
+- Github OAuth-based social login
 - JWT-based authentication with refresh token support
 - Email verification and password reset
 - Profile management with avatar upload
@@ -59,7 +60,7 @@ cd eduhub
 ```
 
 ### Environment Setup
-
+server:
 ```env
 PORT=5000
 MONGO_URI=your_mongodb_uri
@@ -71,6 +72,18 @@ CLOUDINARY_API_SECRET=your_api_secret
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 REDIS_URL=your_redis_url
+```
+client:
+```env
+NEXT_PUBLIC_SERVER_URI="http://localhost:8000/api/v1/"
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=stripe_publish_key
+
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret_key
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret_key
+SECRET=make_random_secret_key
 ```
 
 ### Install Dependencies
