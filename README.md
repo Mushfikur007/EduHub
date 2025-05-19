@@ -62,16 +62,26 @@ cd eduhub
 ### Environment Setup
 server:
 ```env
-PORT=5000
-MONGO_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-REFRESH_TOKEN_SECRET=your_refresh_token_secret
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
+PORT = 8000
+ORIGIN="http://localhost:3000"
+NODE_ENV="development"
+DB_URL=your_mongodb_url
+CLOUD_NAME=your_cloudinary_name
+CLOUD_API_KEY=your_api_key
+CLOUD_SECRETE_KEY=your_api_secret
 REDIS_URL=your_redis_url
+ACTIVATION_SECRET=random_numbers_for_activation_secret
+ACCESS_TOKEN=your_access_token
+REFRESH_TOKEN=your_refresh_token
+ACCESS_TOKEN_EXPIRE=expire_time
+REFRESH_TOKEN_EXPIRE=expire_time
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SERVICE=gmail
+SMTP_MAIL=your_gmail_id
+SMTP_PASS=your_smtp_password
+STRIPE_PUBLISHABLE_KEY=your_stripe_publish_key
+STRIPE_SECRET_KEY=your_strip_secret_key
 ```
 client:
 ```env
