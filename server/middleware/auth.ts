@@ -14,22 +14,33 @@ export const isAuthenticated = CatchAsyncError(
         new ErrorHandeler("Please login to access this resource", 400)
       );
     }
-    const decoded = jwt.verify(
-      access_token,
-      process.env.ACCESS_TOKEN as string
-    ) as JwtPayload;
+    
+    try {
+      const decoded = jwt.verify(
+        access_token,
+        process.env.ACCESS_TOKEN as string
+      ) as JwtPayload;
 
-    if (!decoded) {
-      return next(new ErrorHandeler("Invalid token payload", 401));
+      if (!decoded) {
+        return next(new ErrorHandeler("Invalid token payload", 401));
+      }
+
+      const user = await redis.get(decoded.id);
+      if (!user) {
+        return next(new ErrorHandeler("User not found", 404));
+      }
+      req.user = JSON.parse(user) as any;
+
+      next();
+    } catch (error: any) {
+      // Handle token expiration specifically
+      if (error.name === 'TokenExpiredError') {
+        return next(new ErrorHandeler("Token expired, please refresh your session", 401));
+      }
+      
+      // Handle other JWT errors
+      return next(new ErrorHandeler("Authentication failed, please login again", 401));
     }
-
-    const user = await redis.get(decoded.id);
-    if (!user) {
-      return next(new ErrorHandeler("User not found", 404));
-    }
-    req.user = JSON.parse(user) as any;
-
-    next();
   }
 );
 

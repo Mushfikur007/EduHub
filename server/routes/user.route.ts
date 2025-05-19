@@ -59,5 +59,67 @@ userRouter.delete(
   deleteUser
 );
 
+// Debug endpoint to check user courses
+userRouter.get(
+  "/me/courses",
+  isAuthenticated,
+  (req, res) => {
+    try {
+      const user = req.user;
+      res.status(200).json({
+        success: true,
+        courses: user?.courses || [],
+      });
+    } catch (error: any) {
+      res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  }
+);
+
+// Debug endpoint to check user courses with detailed information
+userRouter.get(
+  "/debug-courses/:courseId",
+  isAuthenticated,
+  (req, res) => {
+    try {
+      const user = req.user;
+      const courseId = req.params.courseId;
+      
+      // Check if the course exists in the user's courses array
+      const courseExists = user?.courses?.some(
+        (course: any) => course.courseId === courseId
+      );
+      
+      // Get the courses array for debugging
+      const coursesArray = user?.courses?.map((course: any) => ({
+        courseId: course.courseId,
+        courseIdType: typeof course.courseId,
+        isMatch: course.courseId === courseId
+      }));
+      
+      res.status(200).json({
+        success: true,
+        courseId,
+        courseIdType: typeof courseId,
+        courses: user?.courses || [],
+        coursesDetailed: coursesArray,
+        isPurchased: courseExists,
+        user: {
+          _id: user?._id,
+          name: user?.name,
+          email: user?.email
+        }
+      });
+    } catch (error: any) {
+      res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  }
+);
 
 export default userRouter;

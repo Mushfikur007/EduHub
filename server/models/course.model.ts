@@ -94,7 +94,7 @@ const courseSchema = new Schema<ICourse>({
   },
   price: {
     type: Number,
-    required: true ,
+    required: true,
   },
   estimatedPrice: {
     type: Number,
